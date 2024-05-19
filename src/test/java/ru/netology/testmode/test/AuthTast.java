@@ -32,8 +32,8 @@ class AuthTest {
         $("[data-test-id='login'] input").setValue(registeredUser.getLogin());
         $("[data-test-id='password'] input").setValue(registeredUser.getPassword());
         $(".button").click();
-        open("http://localhost:9999/dashboard");
-//
+        $("[id = 'root'] .heading").shouldBe(visible).shouldBe(exactText("Личный кабинет"));
+
     }
 
     @Test
@@ -45,8 +45,7 @@ class AuthTest {
         $("[data-test-id='login'] input").setValue(notRegisteredUser.getLogin());
         $("[data-test-id='password'] input").setValue(notRegisteredUser.getPassword());
         $(".button").click();
-
-        $("[data-test-id='error-notification'] .notification__title").shouldBe(visible).shouldBe(exactText("Ошибка"));
+        $("[data-test-id='error-notification'] .notification__content").shouldBe(visible).shouldBe(exactText("Ошибка! Неверно указан логин или пароль"));
     }
 
     @Test
@@ -58,7 +57,7 @@ class AuthTest {
         $("[data-test-id='login'] input").setValue(blockedUser.getLogin());
         $("[data-test-id='password'] input").setValue(blockedUser.getPassword());
         $(".button").click();
-        $("[data-test-id='error-notification'] .notification__title").shouldBe(visible).shouldBe(exactText("Ошибка"));
+        $("[data-test-id='error-notification'] .notification__content").shouldBe(visible).shouldBe(exactText("Ошибка! Пользователь заблокирован"));
     }
 
     @Test
@@ -72,7 +71,7 @@ class AuthTest {
         $("[data-test-id='login'] input").setValue(wrongLogin);
         $("[data-test-id='password'] input").setValue(registeredUser.getPassword());
         $(".button").click();
-        $("[data-test-id='error-notification'] .notification__title").shouldBe(visible).shouldBe(exactText("Ошибка"));
+        $("[data-test-id='error-notification'] .notification__content").shouldBe(visible).shouldBe(exactText("Ошибка! Неверно указан логин или пароль"));
 
     }
 
@@ -87,7 +86,7 @@ class AuthTest {
         $("[data-test-id='login'] input").setValue(registeredUser.getLogin());
         $("[data-test-id='password'] input").setValue(wrongPassword);
         $(".button").click();
-        $("[data-test-id='error-notification'] .notification__title").shouldBe(visible).shouldBe(exactText("Ошибка"));
+        $("[data-test-id='error-notification'] .notification__content").shouldBe(visible).shouldBe(exactText("Ошибка! Неверно указан логин или пароль"));
 
     }
 }
