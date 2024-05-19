@@ -45,8 +45,8 @@ class AuthTest {
         $("[data-test-id='login'] input").setValue(notRegisteredUser.getLogin());
         $("[data-test-id='password'] input").setValue(notRegisteredUser.getPassword());
         $(".button").click();
-        //open("http://localhost:9999/dashboard");
-        $(".notification .notification__title").shouldBe(visible).shouldBe(exactText("Ошибка"));
+
+        $("[data-test-id='error-notification'] .notification__title").shouldBe(visible).shouldBe(exactText("Ошибка"));
     }
 
     @Test
@@ -58,7 +58,7 @@ class AuthTest {
         $("[data-test-id='login'] input").setValue(blockedUser.getLogin());
         $("[data-test-id='password'] input").setValue(blockedUser.getPassword());
         $(".button").click();
-        $(".notification .notification__title").shouldBe(visible).shouldBe(exactText("Ошибка"));
+        $("[data-test-id='error-notification'] .notification__title").shouldBe(visible).shouldBe(exactText("Ошибка"));
     }
 
     @Test
@@ -72,7 +72,7 @@ class AuthTest {
         $("[data-test-id='login'] input").setValue(wrongLogin);
         $("[data-test-id='password'] input").setValue(registeredUser.getPassword());
         $(".button").click();
-        $(".notification .notification__title").shouldBe(visible).shouldBe(exactText("Ошибка"));
+        $("[data-test-id='error-notification'] .notification__title").shouldBe(visible).shouldBe(exactText("Ошибка"));
 
     }
 
@@ -87,6 +87,7 @@ class AuthTest {
         $("[data-test-id='login'] input").setValue(registeredUser.getLogin());
         $("[data-test-id='password'] input").setValue(wrongPassword);
         $(".button").click();
-        $(".notification .notification__title").shouldBe(visible).shouldBe(exactText("Ошибка"));
+        $("[data-test-id='error-notification'] .notification__title").shouldBe(visible).shouldBe(exactText("Ошибка"));
+
     }
 }
